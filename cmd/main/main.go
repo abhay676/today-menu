@@ -5,6 +5,7 @@ import (
 
 	"github.com/abhay676/today-menu/pkg/configs"
 	"github.com/abhay676/today-menu/pkg/db"
+	"github.com/abhay676/today-menu/pkg/routes"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 )
@@ -27,6 +28,9 @@ func main() {
 	_, err = db.ConnectToDatabase(host, user, password, dbname, port)
 
 	router := gin.Default()
+
+	router.Group("/api")
+	routes.LoadRouter(router)
 
 	router.Run()
 }
